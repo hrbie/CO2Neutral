@@ -29,26 +29,74 @@ var app = {
         console.log('Received Event: ' + id);
     },
 	cargarPerfil: function(){
-		self.location="#profile";
+		jQuery.mobile.navigate("#profile");
 	},
 	login: function(){
-		$.mobile.changePage("#home", {reloadPage: "true"});
+		jQuery.mobile.navigate("#home");
 	},
 	fblogin: function() {
-		self.location="#home";
+		jQuery.mobile.navigate("#home");
 	},
 	register: function() {
-		self.location="#register";
+		jQuery.mobile.navigate("#register");
 	},
 	logout: function() {
-		self.location="#inicio";
+		jQuery.mobile.navigate("#inicio");
 	},
 	cargarCalculadora: function(){
 	},
 	cargarConsejos: function(){
+		
 	},
 	cargarProductos: function(){
 	},
 	cargarCentros: function(){
+		//mostrar el mapa cuando la pagina esté cargada
+		$(document).on("pageshow", "#centros", function () {
+			//ubicar a la persona en el mapa
+			app.posicionActual();
+		});
+	},
+		posicionActual: function(){
+		navigator.geolocation.getCurrentPosition(onSuccess, onError,{ enableHighAccuracy: true });
+		function onSuccess(position) {
+			lat =  position.coords.latitude;
+		  	lng = position.coords.longitude;
+			myLatlng = new google.maps.LatLng(lat,lng);
+			
+			montarMapa();
+      	}
+		function onError(error) {
+          	alert('code: ' + error.code + ' message: ' + error.message);
+			myLatlng = new google.maps.LatLng(9.854246, -83.9096050)
+			montarMapa();
+        }
+		function montarMapa(){
+			mapOptions = {
+				center: myLatlng, 
+				zoom: 8,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+			map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+			//agregar el marcador con la posición actual
+			marker = new google.maps.Marker({
+      			position: myLatlng,
+			    map: map,
+		        title: 'Aquí estoy yo!'
+  			});
+			
+			centrosAcopio = apiAccess.getCentros();
+			console.log(centrosAcopio);
+			//iterar en los centros de acopio agregando los markers
+			for(i=0; i<centrosAcopio.length;i++){
+				centro = centrosAcopio[i];
+				marker = new google.maps.Marker({
+					position: new google.maps.LatLng(centro.latitud, centro.longuitud),
+					map: map,
+					title: centro.nombre
+				});
+			}
+		 	google.maps.event.trigger(map,'resize');			
+		}	
 	}
 };
