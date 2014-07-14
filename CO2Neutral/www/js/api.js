@@ -16,5 +16,22 @@ var apiAccess = {
             }
         });
 		return items;		
+	},
+	getConsejos : function() {
+		jQuery.support.cors = true;
+		var items = [];
+        $.ajax({
+            url: 'http://co2neutral.azurewebsites.net/api/recomendacion',
+            type: 'GET',
+			async: false,
+            dataType: 'json',
+            success: function (data)  {   
+				items = data;				
+            },
+			error: function (responseData, textStatus, errorThrown)  {
+                alert(responseData + '\n' + textStatus + '\n' + errorThrown);
+            }
+        });
+		return items;		
 	}
 }
