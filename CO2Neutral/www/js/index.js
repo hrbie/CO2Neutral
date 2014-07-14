@@ -45,7 +45,27 @@ var app = {
 	},
 	cargarCalculadora: function(){
 	},
+	//****************** CargarConsejos *****************************************************
 	cargarConsejos: function(){
+		var consejos="";
+		var total_consejos = apiAccess.getConsejos();;
+	
+		app.cargarConsejos_aux(total_consejos);
+	},
+	
+	cargarConsejos_aux: function(total_consejos){
+		var consejos="";			
+		consejos += '<ul data-role="listview" data-inset="true" data-filter="true" data-divider-theme="b">';
+		consejos += '<li data-role="list-divider"> Recomendaciones</li>';
+				
+		for (var i = 0; i < total_consejos.length; i++) { 
+
+			consejos += '<li><h4>'+total_consejos[i].descripcion + '</li>';
+		}
+
+		consejos += '</ul>';
+		
+		document.getElementById('consejosDiv').innerHTML = consejos;
 		
 	},
 	cargarProductos: function(){
