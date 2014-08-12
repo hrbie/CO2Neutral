@@ -1,3 +1,7 @@
+var id_usuario=1;
+
+
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -43,7 +47,20 @@ var app = {
 	logout: function() {
 		jQuery.mobile.navigate("#inicio");
 	},
+	//****************** Calculadora *****************************************************
 	cargarCalculadora: function(){
+	//cargar los datos del usuario en los campos
+		var transporte = apiAccess.getUsuarioCalculadoraById(id_usuario).resultadoTransporte;
+		//alert(transporte);
+		var electricidad = apiAccess.getUsuarioCalculadoraById(id_usuario).resultadoElectricidad;
+		var reciclaje = apiAccess.getUsuarioCalculadoraById(id_usuario).resultadoReciclaje;
+		var gas = apiAccess.getUsuarioCalculadoraById(id_usuario).resultadoGas;
+		
+		//Se completan los inputs con la informacion obtenida del servidor
+		document.getElementById('resultado_trasporte').value = transporte;
+		document.getElementById('resultado_electricidad').value = electricidad;
+		document.getElementById('resultado_reciclaje').value = reciclaje;
+		document.getElementById('resultado_gas').value = gas;
 	},
 	//****************** CargarConsejos *****************************************************
 	cargarConsejos: function(){

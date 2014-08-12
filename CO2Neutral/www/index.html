@@ -107,7 +107,71 @@
 		  <h1>CO2 Neutral</h1>
 		</div><!-- /header -->
  		<div data-role="content">
-
+			Transporte:
+			<input type="text" id="resultado_trasporte"></input type="text">
+			
+			<a href="#calculadoraTransporte" onClick="app.cargarCalculadoraTransporte()">Calcular Transporte</a>
+			<br/>
+			<!--<button href="#calculadoraTransporte" id="calcularTransporte" onclick="app.calcularTransporte()">Calcular Transporte</button>   -->
+			Electricidad:
+			<input type="text" id="resultado_electricidad"></input type="text">
+			<a href="#calculadoraTransporte" onClick="app.cargarCalculadora()">Calcular consumo Eléctrico</a>
+			<br/>
+			Reciclaje:
+			<input type="text" id="resultado_reciclaje"></input type="text">
+			<a href="#calculadoraTransporte" onClick="app.cargarCalculadora()">Calcular cantidad de reciclaje</a>
+			<br/>
+			Gas:
+			<input type="text" id="resultado_gas"></input type="text">
+			<a href="#calculadoraTransporte" onClick="app.cargarCalculadora()">Calcular consumo de Gas</a>
+			<br/>
+		</div><!-- /content -->	
+		<div data-role="footer" data-position="fixed">
+			<h1>   </h1>
+		</div><!-- /footer -->
+	  </div><!-- /page -->
+	  <!------------------------------------------------------------------------------------------------->
+	  <div data-role="page" id="calculadoraTransporte">
+		<div data-role="header">
+		<a href="#calculadora" data-icon="home" >Atrás</a> <!-----------------Falta Icono atrás---------------------------------------------------------->
+		  <h1>CO2 Neutral</h1>
+		</div><!-- /header -->
+ 		<div data-role="content">
+			<table align="center" >
+				<tr>
+				<td >Medio de Transporte</td>
+				<td>Kilometraje</td>
+				<td>Cantidad de Veces</td>	
+				<td>Periodicidad</td>	
+				<td>Total</td>
+			  </tr>
+				<tr>
+				<td >A pie</td>
+				<td><input type="text" id="km_trayectoPie"></input type="text"></td>
+				<td><input type="text" id="n_vecesPie"></input type="text"></td>	
+				<td><input type="text" id="periodicidad_Pie"></input type="text"></td>	
+				<td><input type="text" id="total_Pie"></input type="text"></td>
+			  </tr>
+			  <tr>
+				<td>Biciclete</td>				
+			  </tr>
+			  <tr>
+				<td>Metro, tren, tranvia</td>				
+			  </tr>
+			  <tr>
+				<td>Autobus</td>				
+			  </tr>
+			  <tr>
+				<td>Motocicleta</td>				
+			  </tr>
+			  <tr>
+				<td>Automóvil</td>				
+			  </tr>
+			  <tr>
+				<td>Avión</td>				
+			  </tr>
+			</table>
+			<button id="calcularTransporte" onclick="app.calcularTransporte()">Calcular Transporte</button>
 		</div><!-- /content -->	
 		<div data-role="footer" data-position="fixed">
 			<h1>   </h1>
