@@ -17,6 +17,42 @@ var apiAccess = {
         });
 		return items;		
 	},
+	getPeriodicidad: function() {
+		jQuery.support.cors = true;
+		var items = [];
+        $.ajax({
+            url: 'http://co2neutral.azurewebsites.net/api/listaFrecuencias',
+            type: 'GET',
+			async: false,
+            dataType: 'json',
+            success: function (data)  {   
+				//console.log( data );
+				items = data;
+            },
+			error: function (responseData, textStatus, errorThrown)  {
+                alert(responseData + '\n' + textStatus + '\n' + errorThrown);
+            }
+        });
+		return items;		
+	},	
+	getMedios: function() {
+		jQuery.support.cors = true;
+		var items = [];
+        $.ajax({
+            url: 'http://co2neutral.azurewebsites.net/api/listaMedios',
+            type: 'GET',
+			async: false,
+            dataType: 'json',
+            success: function (data)  {   
+				//console.log( data );
+				items = data;
+            },
+			error: function (responseData, textStatus, errorThrown)  {
+                alert(responseData + '\n' + textStatus + '\n' + errorThrown);
+            }
+        });
+		return items;		
+	},	
 	getUsuarioCalculadoraById : function(id) {
 		jQuery.support.cors = true;
 		var item = null;

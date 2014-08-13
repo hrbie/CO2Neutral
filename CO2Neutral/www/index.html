@@ -110,7 +110,7 @@
 			Transporte:
 			<input type="text" id="resultado_trasporte"></input type="text">
 			
-			<a href="#calculadoraTransporte" onClick="app.cargarCalculadoraTransporte()">Calcular Transporte</a>
+			<a href="#calculadoraTransporte" onClick="app.cargarPeriodicidad()">Calcular Transporte</a>
 			<br/>
 			<!--<button href="#calculadoraTransporte" id="calcularTransporte" onclick="app.calcularTransporte()">Calcular Transporte</button>   -->
 			Electricidad:
@@ -136,39 +136,79 @@
 		<a href="#calculadora" data-icon="home" >Atrás</a> <!-----------------Falta Icono atrás---------------------------------------------------------->
 		  <h1>CO2 Neutral</h1>
 		</div><!-- /header -->
- 		<div data-role="content">
+ 		<div data-role="content"> <!-----------------Podría autogenerarse la tabla para meter más medios de transporte---------------------------------------------------------->
 			<table align="center" >
 				<tr>
-				<td >Medio de Transporte</td>
-				<td>Kilometraje</td>
-				<td>Cantidad de Veces</td>	
-				<td>Periodicidad</td>	
-				<td>Total</td>
+				<td align= "center" >Medio de Transporte</td>
+				<td align= "center" >Kilometraje</td>
+				<td align= "center" >Cantidad de Veces</td>	
+				<td align= "center" >Periodicidad</td>	
+				<td align= "center" >Total</td>
 			  </tr>
 				<tr>
-				<td >A pie</td>
-				<td><input type="text" id="km_trayectoPie"></input type="text"></td>
-				<td><input type="text" id="n_vecesPie"></input type="text"></td>	
-				<td><input type="text" id="periodicidad_Pie"></input type="text"></td>	
-				<td><input type="text" id="total_Pie"></input type="text"></td>
+				<td>A pie</td>
+				<td><input type="number" id="km_trayectoPie"></input></td>
+				<td><input type="number" id="n_vecesPie"></input></td>	
+				<td><div class="alert alert-info" id="periodicidad_PieDiv"></div>	
+				<td>
+					<input type="number" id="total_Pie" readonly></input></td>
+				</td>
 			  </tr>
 			  <tr>
-				<td>Biciclete</td>				
+				<td>Bicicleta</td>	
+				<td><input type="number" id="km_trayectoBicicleta"></input></td>
+				<td><input type="number" id="n_vecesBicicleta"></input></td>	
+				<td>
+					<div class="alert alert-info" id="periodicidad_BicicletaDiv"></div>	
+				
+				<td>
+					<input type="number" id="total_Bicicleta" readonly></input></td>
+				</td>				
 			  </tr>
 			  <tr>
-				<td>Metro, tren, tranvia</td>				
+				<td>Metro, tren, tranvia</td>
+				<td><input type="number" id="km_trayectoTren"></input></td>
+				<td><input type="number" id="n_vecesTren"></input></td>	
+				<td><div class="alert alert-info"id="periodicidad_TrenDiv"></div>	
+				<td>
+					<input type="number" id="total_Tren" readonly></input></td>
+				</td>				
 			  </tr>
 			  <tr>
-				<td>Autobus</td>				
+				<td>Autobus</td>
+				<td><input type="number" id="km_trayectoAutobus"></input></td>
+				<td><input type="number" id="n_vecesAutobus"></input></td>	
+				<td><div class="alert alert-info" id="periodicidad_AutobusDiv"></div>	
+				<td>
+					<input type="number" id="total_Autobus" readonly></input></td>
+				</td>			
 			  </tr>
 			  <tr>
-				<td>Motocicleta</td>				
+				<td>Motocicleta</td>	
+				<td><input type="number" id="km_trayectoMotocicleta"></input></td>
+				<td><input type="number" id="n_vecesMotocicleta"></input></td>	
+				<td><div class="alert alert-info" id="periodicidad_MotocicletaDiv"></div>	
+				<td>
+					<input type="number" id="total_Motocicleta" readonly></input></td>
+				</td>				
 			  </tr>
 			  <tr>
-				<td>Automóvil</td>				
+				<td>Automóvil</td>
+				<td><input type="number" id="km_trayectoAutomóvil"></input></td>
+				<td><input type="number" id="n_vecesAutomóvil"></input></td>	
+				<td><div class="alert alert-info" id="periodicidad_AutomóvilDiv"></div>	
+				<td>
+					<input type="number" id="total_Automóvil" readonly></input></td>
+				</td>				
 			  </tr>
 			  <tr>
-				<td>Avión</td>				
+				<td>Avión</td>	
+				<td><input type="number" id="km_trayectoAvión"></input></td>
+				<td><input type="number" id="n_vecesAvión"></input></td>	
+				<td><div class="alert alert-info" id="periodicidad_AviónDiv"></div>	
+				<td>
+					<input type="number" id="total_Avión" readonly></input></td>
+				</td>				
 			  </tr>
 			</table>
 			<button id="calcularTransporte" onclick="app.calcularTransporte()">Calcular Transporte</button>

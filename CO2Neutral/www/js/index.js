@@ -62,6 +62,50 @@ var app = {
 		document.getElementById('resultado_reciclaje').value = reciclaje;
 		document.getElementById('resultado_gas').value = gas;
 	},
+	
+	cargarPeriodicidad: function (){
+	var total_periodicidad = apiAccess.getPeriodicidad();
+	
+	app.cargarPeriodicidad_aux(total_periodicidad);
+	},
+	
+	cargarPeriodicidad_aux: function(total_periodicidad){
+	var periodicidad ="";
+	periodicidad += '<select name="list1">';
+	
+	for (var i = 0; i < total_periodicidad.length; i++) { 
+			periodicidad += '<option>'+total_periodicidad[i].nombre + '</option>';
+		}
+	periodicidad += '</select>';
+	
+	document.getElementById('periodicidad_PieDiv').innerHTML = periodicidad;
+	document.getElementById('periodicidad_BicicletaDiv').innerHTML = periodicidad;
+	document.getElementById('periodicidad_TrenDiv').innerHTML = periodicidad;
+	document.getElementById('periodicidad_AutobusDiv').innerHTML = periodicidad;
+	document.getElementById('periodicidad_MotocicletaDiv').innerHTML = periodicidad;
+	document.getElementById('periodicidad_AutomóvilDiv').innerHTML = periodicidad;
+	document.getElementById('periodicidad_AviónDiv').innerHTML = periodicidad;	
+	},
+	calcularTransporte: function(){	
+	//guardar los datos nuevos del usuario en la BD
+	var km_trayectoTren = document.getElementById('km_trayectoTren').value;
+	var n_vecesTren = document.getElementById('km_trayectoTren').value;
+	var selectedValueArray = $('.alert select').map(function() {//-- obtener los campos del combobox -->
+		return $(this).val();
+	}).get();
+	var total_medios = apiAccess.getMedios();
+	for (var i = 0; i < total_medios.length; i++) { 
+			if (total_medios[i].nombre == "Metro, tren, tranvia"){
+			document.getElementById('total_Tren').value= (km_trayectoTren*n_vecesTren*int(total_medios[i].valor))//Verificar
+			}				
+		}
+	//alert(total_medios);
+	//alert(selectedValueArray);
+	document.getElementById('total_Tren').value= (km_trayectoTren*n_vecesTren)
+	 
+	
+	
+	},
 	//****************** CargarConsejos *****************************************************
 	cargarConsejos: function(){
 		var consejos="";
