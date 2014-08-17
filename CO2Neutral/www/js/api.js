@@ -92,5 +92,22 @@ var apiAccess = {
             }
         });
 		return items;		
-	}
+	},
+	getProductos : function() {
+		jQuery.support.cors = true;
+		var items = [];
+        $.ajax({
+            url: 'http://co2neutral.azurewebsites.net/api/Productos',
+            type: 'GET',
+			async: false,
+            dataType: 'json',
+            success: function (data)  {   
+				items = data;
+            },
+			error: function (responseData, textStatus, errorThrown)  {
+                alert(responseData + '\n' + textStatus + '\n' + errorThrown);
+            }
+        });
+		return items;		
+	},
 }

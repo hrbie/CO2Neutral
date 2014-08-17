@@ -130,7 +130,31 @@ var app = {
 		
 	},
 	cargarProductos: function(){
+		var productos="";
+		var total_productos = apiAccess.getProductos(); //array - categorias
+		productos += '<ul data-role="listview" data-inset="true" data-theme="a" data-dividertheme="d">';
+		productos += '<li><a href="#pTransporte"> <img src="res/car.png" class="ui-li-thumb"/><h1> Transporte</h1></a></li>';
+		productos += '<li><a href="#pAgua"> <img src="res/water.png" class="ui-li-thumb"/><h1>Uso del agua</h1></a></li>';
+		productos += '</ul>';
+		document.getElementById('ProductosDiv').innerHTML = productos;
+		
+		app.cargarProductos_aux(total_productos);
+
 	},
+	
+	cargarProductos_aux: function(total_productos){
+		var productosTra="";
+		productosTra += '<a href="./" data-shadow="false" data-iconshadow="false" data-icon="carat-l" data-iconpos="notext" data-rel="back" data-ajax="false">Atrás</a>';			
+		productosTra += '<ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">';
+		
+		for (var i = 0; i < total_productos.length; i++) { 		
+			
+			productosTra += '<li>'+total_productos[i].nombre+'<br>';
+			productosTra += ''+total_productos[i].descripcion+'</li>';
+		}
+		productosTra += '</ul>';
+		document.getElementById('ProductosTra1').innerHTML = productosTra;
+	},	
 	cargarCentros: function(){
 		//mostrar el mapa cuando la pagina esté cargada
 		$(document).on("pageshow", "#centros", function () {
