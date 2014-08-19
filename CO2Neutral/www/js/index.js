@@ -1,4 +1,5 @@
 var id_usuario=1;
+var idCalculadora=1;
 
 
 
@@ -64,10 +65,8 @@ var app = {
 	},
 	
 	cargarPeriodicidad: function (){
-	var total_periodicidad = apiAccess.getPeriodicidad();
-	
-	app.cargarPeriodicidad_aux(total_periodicidad);
-	},
+	var total_periodicidad = apiAccess.getPeriodicidad();	
+	app.cargarPeriodicidad_aux(total_periodicidad);	},
 	
 	cargarPeriodicidad_aux: function(total_periodicidad){
 	var periodicidad ="";
@@ -85,6 +84,12 @@ var app = {
 	document.getElementById('periodicidad_MotocicletaDiv').innerHTML = periodicidad;
 	document.getElementById('periodicidad_AutomóvilDiv').innerHTML = periodicidad;
 	document.getElementById('periodicidad_AviónDiv').innerHTML = periodicidad;	
+	
+	var datosCalculadora = apiAccess.getMedioTransporte(idCalculadora);
+	alert(datosCalculadora);
+	for (var i = 0; i < datosCalculadora.length; i++) { 
+		alert(datosCalculadora[i].kilometraje);	
+	}
 	},
 	calcularTransporte: function(){	
 	//guardar los datos nuevos del usuario en la BD

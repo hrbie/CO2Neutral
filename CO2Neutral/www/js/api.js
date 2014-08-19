@@ -35,6 +35,29 @@ var apiAccess = {
         });
 		return items;		
 	},	
+	getMedioTransporte: function(idCalculadora){
+	jQuery.support.cors = true;
+		var items = [];
+        $.ajax({
+            url: 'http://co2neutral.azurewebsites.net/api/MedioTransporte',
+            type: 'GET',
+			async: false,
+            dataType: 'json',
+            success: function (data)  {   
+				//console.log( data );
+				for(i=0;i<data.length;i++){					
+					if(data[i].idCalculadora == idCalculadora){							
+						item.push(data[i]);
+					}
+				}
+				items = data;
+            },
+			error: function (responseData, textStatus, errorThrown)  {
+                alert(responseData + '\n' + textStatus + '\n' + errorThrown);
+            }
+        });
+		return items;		
+	},
 	crearMedioTransporte: function( idCalculadora, idFrecuencia, km, n, idMedios){
 		jQuery.support.cors = true;
 		result = false;
