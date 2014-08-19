@@ -107,7 +107,111 @@
 		  <h1>CO2 Neutral</h1>
 		</div><!-- /header -->
  		<div data-role="content">
-
+			Transporte:
+			<input type="text" id="resultado_trasporte"></input type="text">
+			
+			<a href="#calculadoraTransporte" onClick="app.cargarPeriodicidad()">Calcular Transporte</a>
+			<br/>
+			<!--<button href="#calculadoraTransporte" id="calcularTransporte" onclick="app.calcularTransporte()">Calcular Transporte</button>   -->
+			Electricidad:
+			<input type="text" id="resultado_electricidad"></input type="text">
+			<a href="#calculadoraTransporte" onClick="app.cargarCalculadora()">Calcular consumo Eléctrico</a>
+			<br/>
+			Reciclaje:
+			<input type="text" id="resultado_reciclaje"></input type="text">
+			<a href="#calculadoraTransporte" onClick="app.cargarCalculadora()">Calcular cantidad de reciclaje</a>
+			<br/>
+			Gas:
+			<input type="text" id="resultado_gas"></input type="text">
+			<a href="#calculadoraTransporte" onClick="app.cargarCalculadora()">Calcular consumo de Gas</a>
+			<br/>
+		</div><!-- /content -->	
+		<div data-role="footer" data-position="fixed">
+			<h1>   </h1>
+		</div><!-- /footer -->
+	  </div><!-- /page -->
+	  <!------------------------------------------------------------------------------------------------->
+	  <div data-role="page" id="calculadoraTransporte">
+		<div data-role="header">
+		<a href="#calculadora" data-icon="home" >Atrás</a> <!-----------------Falta Icono atrás---------------------------------------------------------->
+		  <h1>CO2 Neutral</h1>
+		</div><!-- /header -->
+ 		<div data-role="content"> <!-----------------Podría autogenerarse la tabla para meter más medios de transporte---------------------------------------------------------->
+			<table align="center" >
+				<tr>
+				<td align= "center" >Medio de Transporte</td>
+				<td align= "center" >Kilometraje</td>
+				<td align= "center" >Cantidad de Veces</td>	
+				<td align= "center" >Periodicidad</td>	
+				<td align= "center" >Total</td>
+			  </tr>
+				<tr>
+				<td>A pie</td>
+				<td><input type="number" id="km_trayectoPie"></input></td>
+				<td><input type="number" id="n_vecesPie"></input></td>	
+				<td><div class="alert alert-info" id="periodicidad_PieDiv"></div>	
+				<td>
+					<input type="number" id="total_Pie" readonly></input></td>
+				</td>
+			  </tr>
+			  <tr>
+				<td>Bicicleta</td>	
+				<td><input type="number" id="km_trayectoBicicleta"></input></td>
+				<td><input type="number" id="n_vecesBicicleta"></input></td>	
+				<td>
+					<div class="alert alert-info" id="periodicidad_BicicletaDiv"></div>	
+				
+				<td>
+					<input type="number" id="total_Bicicleta" readonly></input></td>
+				</td>				
+			  </tr>
+			  <tr>
+				<td>Tren, Tranvía, Metro</td>
+				<td><input type="number" id="km_trayectoTren"></input></td>
+				<td><input type="number" id="n_vecesTren"></input></td>	
+				<td><div class="alert alert-info"id="periodicidad_TrenDiv"></div>	
+				<td>
+					<input type="number" id="total_Tren" readonly></input></td>
+				</td>				
+			  </tr>
+			  <tr>
+				<td>Autobus</td>
+				<td><input type="number" id="km_trayectoAutobus"></input></td>
+				<td><input type="number" id="n_vecesAutobus"></input></td>	
+				<td><div class="alert alert-info" id="periodicidad_AutobusDiv"></div>	
+				<td>
+					<input type="number" id="total_Autobus" readonly></input></td>
+				</td>			
+			  </tr>
+			  <tr>
+				<td>Motocicleta</td>	
+				<td><input type="number" id="km_trayectoMotocicleta"></input></td>
+				<td><input type="number" id="n_vecesMotocicleta"></input></td>	
+				<td><div class="alert alert-info" id="periodicidad_MotocicletaDiv"></div>	
+				<td>
+					<input type="number" id="total_Motocicleta" readonly></input></td>
+				</td>				
+			  </tr>
+			  <tr>
+				<td>Automóvil</td>
+				<td><input type="number" id="km_trayectoAutomóvil"></input></td>
+				<td><input type="number" id="n_vecesAutomóvil"></input></td>	
+				<td><div class="alert alert-info" id="periodicidad_AutomóvilDiv"></div>	
+				<td>
+					<input type="number" id="total_Automóvil" readonly></input></td>
+				</td>				
+			  </tr>
+			  <tr>
+				<td>Avión</td>	
+				<td><input type="number" id="km_trayectoAvión"></input></td>
+				<td><input type="number" id="n_vecesAvión"></input></td>	
+				<td><div class="alert alert-info" id="periodicidad_AviónDiv"></div>	
+				<td>
+					<input type="number" id="total_Avión" readonly></input></td>
+				</td>				
+			  </tr>
+			</table>
+			<button id="calcularTransporte" onclick="app.calcularTransporte()">Calcular Transporte</button>
 		</div><!-- /content -->	
 		<div data-role="footer" data-position="fixed">
 			<h1>   </h1>
@@ -120,25 +224,82 @@
 		  <h1>CO2 Neutral</h1>
 		</div><!-- /header -->
  		<div data-role="content">
+ 		
+ 		<center>
+            	<h1>Consejos</h1>
+			
+		<div id="consejosDiv" align="center"></div>
+            
+            	</center>
+
 
 		</div><!-- /content -->	
 		<div data-role="footer" data-position="fixed">
 			<h1>   </h1>
 		</div><!-- /footer -->
 	  </div><!-- /page -->
+
       <!------------------------------------------------------------------------------------------------->    
 	  <div data-role="page" id="productos">
 		<div data-role="header">
 		<a href="#home" data-icon="home" >Inicio</a>
 		  <h1>CO2 Neutral</h1>
 		</div><!-- /header -->
- 		<div data-role="content">
-
+ 		
+		<div data-role="content">
+			<center>
+				<h2>Productos y Proveedores de Soluciones Ecológicas</h2>
+				<h3>Le invitamos a conocer los productos que le ayudarán a reducir su huella de carbono y utilizar mejor su dinero</h3>
+			<div id="ProductosDiv" align="center"></div>
+			</center>
+			
 		</div><!-- /content -->	
 		<div data-role="footer" data-position="fixed">
 			<h1>   </h1>
 		</div><!-- /footer -->
 	  </div><!-- /page -->
+	  <!------------------------------------------------------------------------------------------------->
+	  	 <div data-role="page" id="pTransporte">
+		<div data-role="header">
+		<a href="#home" data-icon="home" >Inicio</a>
+		  <h1>CO2 Neutral</h1>
+		</div><!-- /header -->
+ 		
+		<div data-role="content">
+			<center>
+				<div id="ProductosTra" align="center"></div>
+				<ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
+					<li><a href="#pTransporte1"><h1>Autos Híbridos</h1></a></li>
+					<li><a href="#pTransporte1"><h1>Autos Eléctricos</h1></a></li>
+				</ul>
+	
+			</center>
+			
+		</div><!-- /content -->	
+		<div data-role="footer" data-position="fixed">
+			<h1>   </h1>
+		</div><!-- /footer -->
+	  </div><!-- /page -->
+      <!------------------------------------------------------------------------------------------------->  
+		<div data-role="page" id="pTransporte1">
+		<div data-role="header">
+		<a href="#home" data-icon="home" >Inicio</a>
+		  <h1>CO2 Neutral</h1>
+		</div><!-- /header -->
+ 		
+		<div data-role="content">
+			<center>
+				
+				<div id="ProductosTra1" align="center"></div>
+	
+			</center>
+			
+		</div><!-- /content -->	
+		<div data-role="footer" data-position="fixed">
+			<h1>   </h1>
+		</div><!-- /footer -->
+	  </div><!-- /page -->
+
       <!------------------------------------------------------------------------------------------------->    
 	  <div data-role="page" id="centros">
 		<div data-role="header">
@@ -146,7 +307,9 @@
 		  <h1>CO2 Neutral</h1>
 		</div><!-- /header -->
  		<div data-role="content">
-
+		<center>
+			<div id="map-canvas" align="center" style="width:400px; height:400px";></div>
+		</center>
 		</div><!-- /content -->	
 		<div data-role="footer" data-position="fixed">
 			<h1>   </h1>

@@ -1,5 +1,6 @@
 var id_usuario=1;
 var idCalculadora=1;
+var listaFrecuencia=[];
 
 
 
@@ -66,47 +67,124 @@ var app = {
 	
 	cargarPeriodicidad: function (){
 	var total_periodicidad = apiAccess.getPeriodicidad();	
-	app.cargarPeriodicidad_aux(total_periodicidad);	},
+		
+	document.getElementById('periodicidad_PieDiv').innerHTML = app.generarPeriodicidad_aux(total_periodicidad,1);
+	document.getElementById('periodicidad_BicicletaDiv').innerHTML = app.generarPeriodicidad_aux(total_periodicidad,2);
+	document.getElementById('periodicidad_TrenDiv').innerHTML = app.generarPeriodicidad_aux(total_periodicidad,3);
+	document.getElementById('periodicidad_AutobusDiv').innerHTML = app.generarPeriodicidad_aux(total_periodicidad,4);
+	document.getElementById('periodicidad_MotocicletaDiv').innerHTML = app.generarPeriodicidad_aux(total_periodicidad,5);
+	document.getElementById('periodicidad_AutomóvilDiv').innerHTML = app.generarPeriodicidad_aux(total_periodicidad,6);
+	document.getElementById('periodicidad_AviónDiv').innerHTML = app.generarPeriodicidad_aux(total_periodicidad,7);
+	app.cargarPeriodicidad_aux();	
+	},
 	
-	cargarPeriodicidad_aux: function(total_periodicidad){
+	generarPeriodicidad_aux: function(total_periodicidad, id){
 	var periodicidad ="";
-	periodicidad += '<select name="list1">';
-	
-	for (var i = 0; i < total_periodicidad.length; i++) { 
-			periodicidad += '<option>'+total_periodicidad[i].nombre + '</option>';
+	periodicidad += '<select id=list'+id+'>';
+		for (var i = 0; i < total_periodicidad.length; i++) { 
+			periodicidad += '<option value='+total_periodicidad[i].valor+'>'+total_periodicidad[i].nombre + '</option>';
 		}
 	periodicidad += '</select>';
-	
-	document.getElementById('periodicidad_PieDiv').innerHTML = periodicidad;
-	document.getElementById('periodicidad_BicicletaDiv').innerHTML = periodicidad;
-	document.getElementById('periodicidad_TrenDiv').innerHTML = periodicidad;
-	document.getElementById('periodicidad_AutobusDiv').innerHTML = periodicidad;
-	document.getElementById('periodicidad_MotocicletaDiv').innerHTML = periodicidad;
-	document.getElementById('periodicidad_AutomóvilDiv').innerHTML = periodicidad;
-	document.getElementById('periodicidad_AviónDiv').innerHTML = periodicidad;	
+	return periodicidad;
+	},
+	cargarPeriodicidad_aux: function(){		
 	
 	var datosCalculadora = apiAccess.getMedioTransporte(idCalculadora);
-	alert(datosCalculadora);
-	for (var i = 0; i < datosCalculadora.length; i++) { 
-		alert(datosCalculadora[i].kilometraje);	
-	}
+	
+	for (var i = 0; i < datosCalculadora.length; i++) { 	
+		
+			if (apiAccess.getMediosById(datosCalculadora[i].idMedios).nombre == "Pie"){
+				document.getElementById('km_trayectoPie').value= datosCalculadora[i].kilometraje;
+				document.getElementById('n_vecesPie').value= datosCalculadora[i].cantidadVeces;
+				$("#list1").val(apiAccess.getPeriodicidadById(datosCalculadora[i].idFrecuencias).valor);
+			}
+			else if (apiAccess.getMediosById(datosCalculadora[i].idMedios).nombre == "Bicicleta"){
+				document.getElementById('km_trayectoBicicleta').value= datosCalculadora[i].kilometraje;
+				document.getElementById('n_vecesBicicleta').value= datosCalculadora[i].cantidadVeces;
+				$("#list2").val(apiAccess.getPeriodicidadById(datosCalculadora[i].idFrecuencias).valor);				
+			}
+			else if (apiAccess.getMediosById(datosCalculadora[i].idMedios).nombre == "Tren, Tranvía, Metro"){
+				document.getElementById('km_trayectoTren').value= datosCalculadora[i].kilometraje;
+				document.getElementById('n_vecesTren').value= datosCalculadora[i].cantidadVeces;	
+				$("#list3").val(apiAccess.getPeriodicidadById(datosCalculadora[i].idFrecuencias).valor);	
+			}
+			else if (apiAccess.getMediosById(datosCalculadora[i].idMedios).nombre == "Autobus"){
+				document.getElementById('km_trayectoAutobus').value= datosCalculadora[i].kilometraje;
+				document.getElementById('n_vecesAutobus').value= datosCalculadora[i].cantidadVeces;
+				$("#list4").val(apiAccess.getPeriodicidadById(datosCalculadora[i].idFrecuencias).valor);	
+			}
+			else if (apiAccess.getMediosById(datosCalculadora[i].idMedios).nombre == "Motocicleta"){
+				document.getElementById('km_trayectoMotocicleta').value= datosCalculadora[i].kilometraje;
+				document.getElementById('n_vecesMotocicleta').value= datosCalculadora[i].cantidadVeces;	
+				$("#list5").val(apiAccess.getPeriodicidadById(datosCalculadora[i].idFrecuencias).valor);	
+			}
+			else if (apiAccess.getMediosById(datosCalculadora[i].idMedios).nombre == "Automóvil"){
+				document.getElementById('km_trayectoAutomóvil').value= datosCalculadora[i].kilometraje;
+				document.getElementById('n_vecesAutomóvil').value= datosCalculadora[i].cantidadVeces;
+				$("#list6").val(apiAccess.getPeriodicidadById(datosCalculadora[i].idFrecuencias).valor);	
+			}else{
+				document.getElementById('km_trayectoAvión').value= datosCalculadora[i].kilometraje;
+				document.getElementById('n_vecesAvión').value= datosCalculadora[i].cantidadVeces;
+				$("#list7").val(apiAccess.getPeriodicidadById(datosCalculadora[i].idFrecuencias).valor);	
+			}
+		}	
 	},
 	calcularTransporte: function(){	
-	//guardar los datos nuevos del usuario en la BD
-	var km_trayectoTren = document.getElementById('km_trayectoTren').value;
-	var n_vecesTren = document.getElementById('km_trayectoTren').value;
-	var selectedValueArray = $('.alert select').map(function() {//-- obtener los campos del combobox -->
-		return $(this).val();
-	}).get();
-	var total_medios = apiAccess.getMedios();
-	for (var i = 0; i < total_medios.length; i++) { 			
-			if (total_medios[i].nombre == "Tren, Tranvía, Metro"){			
-			document.getElementById('total_Tren').value= (km_trayectoTren*n_vecesTren*(total_medios[i].valor))/(apiAccess.getPeriodicidadValor(selectedValueArray[i])).valor;//Verificar
+		//Obtener datos de los entry para calcular
+		var km_trayectoPie = document.getElementById('km_trayectoPie').value;
+		var n_vecesPie = document.getElementById('n_vecesPie').value;	
+		
+		var km_trayectoBicicleta = document.getElementById('km_trayectoBicicleta').value;
+		var n_vecesBicicleta = document.getElementById('n_vecesBicicleta').value;
+		
+		var km_trayectoTren = document.getElementById('km_trayectoTren').value;
+		var n_vecesTren = document.getElementById('n_vecesTren').value;
+		
+		var km_trayectoAutobus = document.getElementById('km_trayectoAutobus').value;
+		var n_vecesAutobus = document.getElementById('n_vecesAutobus').value;
+		
+		var km_trayectoMotocicleta = document.getElementById('km_trayectoMotocicleta').value;
+		var n_vecesMotocicleta = document.getElementById('n_vecesMotocicleta').value;
+		
+		var km_trayectoAutomóvil = document.getElementById('km_trayectoAutomóvil').value;
+		var n_vecesAutomóvil = document.getElementById('n_vecesAutomóvil').value;
+		
+		var km_trayectoAvión = document.getElementById('km_trayectoAvión').value;
+		var n_vecesAvión = document.getElementById('n_vecesAvión').value;
+
+		var selectedValueArray = $('.alert select').map(function() {//-- obtener los campos del combobox -->
+			return $(this).val();
+		}).get();
+		
+	
+	var total_medios = apiAccess.getMedios();	
+	for (var i = 0; i < total_medios.length; i++) {		
+			
+			if (total_medios[i].nombre == "Pie"){				
+				document.getElementById('total_Pie').value= ((km_trayectoPie*n_vecesPie*(total_medios[i].valor))/(selectedValueArray[i])).toFixed(3);
+			}
+			else if (total_medios[i].nombre == "Bicicleta"){							
+				document.getElementById('total_Bicicleta').value= ((km_trayectoBicicleta*n_vecesBicicleta*(total_medios[i].valor))/(selectedValueArray[i])).toFixed(3);
+			}
+			else if (total_medios[i].nombre == "Tren, Tranvía, Metro"){					
+				document.getElementById('total_Tren').value= ((km_trayectoTren*n_vecesTren*(total_medios[i].valor))/(selectedValueArray[i])).toFixed(3);
+			}
+			else if (total_medios[i].nombre == "Autobus"){					
+				document.getElementById('total_Autobus').value= ((km_trayectoAutobus*n_vecesAutobus*(total_medios[i].valor))/(selectedValueArray[i])).toFixed(3);
+			}
+			else if (total_medios[i].nombre == "Motocicleta"){					
+				document.getElementById('total_Motocicleta').value= ((km_trayectoMotocicleta*n_vecesMotocicleta*(total_medios[i].valor))/(selectedValueArray[i])).toFixed(3);
+			}
+			else if (total_medios[i].nombre == "Automóvil"){					
+				document.getElementById('total_Automóvil').value= ((km_trayectoAutomóvil*n_vecesAutomóvil*(total_medios[i].valor))/(selectedValueArray[i])).toFixed(3);
+			}
+			else {					
+				document.getElementById('total_Avión').value= ((km_trayectoAvión*n_vecesAvión*(total_medios[i].valor))/(selectedValueArray[i])).toFixed(3);
 			}				
 		}
-	//alert(total_medios);
-	//alert(selectedValueArray);
-	//document.getElementById('total_Tren').value= (km_trayectoTren*n_vecesTren)
+		
+	//apiAccess.actulizarMedioTransporte(1,2,3,400,4); Es para actualizar pero aún no funciona
+	//apiAccess.crearMedioTransporte('1','2','9','50000','4'); es para crear pero aún no funciona
 	 
 	
 	
