@@ -198,19 +198,118 @@ var app = {
 	},
 	
 	cargarConsejos_aux: function(total_consejos){
-		var consejos="";			
-		consejos += '<ul data-role="listview" data-inset="true" data-filter="true" data-divider-theme="b">';
-		consejos += '<li data-role="list-divider"> Recomendaciones</li>';
+		var consejos="";
+		consejos += '<div data-role="tabs" id="tabs">';		
+		consejos += '<div data-role="navbar">';
+		consejos += '<ul>';
+		consejos += '<li><a href="#Plazo" data-ajax="false">Plazo</a></li>';
+		consejos += '<li><a href="#Costo" data-ajax="false">Costo</a></li>';
+		consejos += '<li><a href="#Impacto" data-ajax="false">Impacto</a></li>';
+		consejos += '</ul>';
+		consejos += '</div>';
+//----------------------------------------------PESTAÑA PLAZO---------------------------------------------------
+
+//*********************************************ListView corto Plazo*********************************************		
+		consejos += '<div id="Plazo" data-role="collapsibleset" data-theme="a" data-content-theme="b">';
+		consejos += '<div data-role="collapsible">';
+		consejos += '<h2>Corto Plazo</h2>';
+		consejos += '<ul data-role="listview" data-filter="true" data-filter-theme="a" data-divider-theme="b">';
 				
 		for (var i = 0; i < total_consejos.length; i++) { 
-
-			consejos += '<li><h4>'+total_consejos[i].descripcion + '</li>';
+			consejos += '<li class="ui-field-contain">'+total_consejos[i].descripcion + '</li>';
 		}
 
-		consejos += '</ul>';
+		consejos += '</ul></div>';
+//*********************************************ListView mediano Plazo*********************************************		
+		consejos += '<div data-role="collapsible">';
+		consejos += '<h2>Mediano Plazo</h2>';
+		consejos += '<ul data-role="listview" data-filter="true" data-filter-theme="a" data-divider-theme="b">';
+				
+		for (var i = 0; i < total_consejos.length; i++) { 
+			consejos += '<li class="ui-field-contain">'+total_consejos[i].descripcion + '</li>';
+		}
+
+		consejos += '</ul></div>';
+//*********************************************ListView mediano Plazo*********************************************		
+		consejos += '<div data-role="collapsible">';
+		consejos += '<h2>Largo Plazo</h2>';
+		consejos += '<ul data-role="listview" data-filter="true" data-filter-theme="a" data-divider-theme="b">';
+				
+		for (var i = 0; i < total_consejos.length; i++) { 
+			consejos += '<li class="ui-field-contain">'+total_consejos[i].descripcion + '</li>';
+		}
+
+		consejos += '</ul></div></div>';
+		
+//----------------------------------------------PESTAÑA COSTO---------------------------------------------------
+
+//*********************************************ListView bajo Costo*********************************************		
+		consejos += '<div id="Costo" data-role="collapsibleset" data-theme="a" data-content-theme="b">';
+		consejos += '<div data-role="collapsible">';
+		consejos += '<h2>Bajo Costo</h2>';
+		consejos += '<ul data-role="listview" data-filter="true" data-filter-theme="a" data-divider-theme="b">';
+				
+		for (var i = 0; i < total_consejos.length; i++) { 
+			consejos += '<li class="ui-field-contain">'+total_consejos[i].descripcion + '</li>';
+		}
+
+		consejos += '</ul></div>';
+//*********************************************ListView Costo Medio*********************************************		
+		consejos += '<div data-role="collapsible">';
+		consejos += '<h2>Costo Medio</h2>';
+		consejos += '<ul data-role="listview" data-filter="true" data-filter-theme="a" data-divider-theme="b">';
+				
+		for (var i = 0; i < total_consejos.length; i++) { 
+			consejos += '<li class="ui-field-contain">'+total_consejos[i].descripcion + '</li>';
+		}
+
+		consejos += '</ul></div>';
+//*********************************************ListView Alto Costo*********************************************		
+		consejos += '<div data-role="collapsible">';
+		consejos += '<h2>Alto Costo</h2>';
+		consejos += '<ul data-role="listview" data-filter="true" data-filter-theme="a" data-divider-theme="b">';
+				
+		for (var i = 0; i < total_consejos.length; i++) { 
+			consejos += '<li class="ui-field-contain">'+total_consejos[i].descripcion + '</li>';
+		}
+
+		consejos += '</ul></div></div>';
+		
+//----------------------------------------------PESTAÑA Impacto---------------------------------------------------
+
+//*********************************************ListView Impacto bajo*********************************************		
+		consejos += '<div id="Impacto" data-role="collapsibleset" data-theme="a" data-content-theme="b">';
+		consejos += '<div data-role="collapsible">';
+		consejos += '<h2>Impacto Bajo</h2>';
+		consejos += '<ul data-role="listview" data-filter="true" data-filter-theme="a" data-divider-theme="b">';
+				
+		for (var i = 0; i < total_consejos.length; i++) { 
+			consejos += '<li class="ui-field-contain">'+total_consejos[i].descripcion + '</li>';
+		}
+
+		consejos += '</ul></div>';
+//*********************************************ListView Impacto medio*********************************************		
+		consejos += '<div data-role="collapsible">';
+		consejos += '<h2>Impacto Medio</h2>';
+		consejos += '<ul data-role="listview" data-filter="true" data-filter-theme="a" data-divider-theme="b">';
+				
+		for (var i = 0; i < total_consejos.length; i++) { 
+			consejos += '<li class="ui-field-contain">'+total_consejos[i].descripcion + '</li>';
+		}
+
+		consejos += '</ul></div>';
+//*********************************************ListView Impacto alto*********************************************		
+		consejos += '<div data-role="collapsible">';
+		consejos += '<h2>Impacto Alto</h2>';
+		consejos += '<ul data-role="listview" data-filter="true" data-filter-theme="a" data-divider-theme="b">';
+				
+		for (var i = 0; i < total_consejos.length; i++) { 
+			consejos += '<li class="ui-field-contain">'+total_consejos[i].descripcion + '</li>';
+		}
+
+		consejos += '</ul></div></div></div>';
 		
 		document.getElementById('consejosDiv').innerHTML = consejos;
-		
 	},
 	cargarProductos: function(){
 		var productos="";
